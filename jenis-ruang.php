@@ -3,6 +3,7 @@
 </head>
 <body>
     <h1>APLIKASI PENDATAAN RUANG SMKN 1 SAYUNG</h1>
+    <h4><a href="logout.php">LOGOUT</a></h4>
     <table border="1">
         <tr>
             <th>nama ruang</th>
@@ -23,5 +24,6 @@ while($intan9nov=mysqli_fetch_array($query)){
 }
 ?>
 </table>
+<h4><a href="tambah.php"><input type="submit" name="tambah" value="tambah"/></h4></a>
 </body>
 </html>

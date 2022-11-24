@@ -6,8 +6,29 @@ include("koneksi.php");
     <head>
 </head>
 <body>
+    <?php
+    session_start();
+    if($_SESSION['status']!="login"){
+        header("location:../login.php?pesan=belum_login");
+    }
+    ?>
+    <h1>Selamat Datang, <?php echo $_SESSION['username']; ?>! ANDA BERHASIL LOGIN-!!</h1>
+    <br/>
+    <br/>
     <h1>APLIKASI PENDATAAN RUANG SMKN 1 SAYUNG</h1>
-    <h4> <a href=tambah.php>tambah</a><h4>
+    <h4> <a href="logout.php">LOGOUT</a><h4>
+    <form action="penduduk.php" method="get">
+	<label>Cari :</label>
+	<input type="text" name="cari">
+	<input type="submit" value="Cari">
+</form>
+
+<?php 
+if(isset($_GET['cari'])){
+	$cari = $_GET['cari'];
+	echo "<b>Hasil pencarian : ".$cari."</b>";
+}
+?>
         <table border="1">
             <tr>
                 <th>id</th>
@@ -19,6 +40,15 @@ include("koneksi.php");
 
 <?php
 include("koneksi.php");
+if(isset($_GET['cari'])){
+    $cari = $_GET['cari'];
+    $sql="SELECT * FROM  intan9nov WHERE nama LIKE '%".$cari."%'";
+    $query = mysqli_query($koneksi, $sql); 
+    			
+}else{
+    $sql='SELECT * FROM  intan9nov';
+    $query = mysqli_query($koneksi, $sql);  	
+}
 $sql='SELECT * FROM intan9nov';
 $query = mysqli_query($koneksi, $sql);
 while($intan9nov = mysqli_fetch_array($query)){
@@ -35,5 +65,6 @@ while($intan9nov = mysqli_fetch_array($query)){
 }
 ?>
 </table>
+<h4><a href="tambah.php"><input type="submit" name="tambah" value="tambah"/></h4></a>
 </body>
 </html>

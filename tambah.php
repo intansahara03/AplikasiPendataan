@@ -6,6 +6,7 @@
     <form action ="proses-tambah.php" method="POST">
         <form>
             <fieldset>
+                <h4><a href="logout.php">LOGOUT</a></h4>
                 <p>
                     <label for ="nama_ruang">nama ruang:</label>
                     <input type="text" name="nama_ruang"/>
